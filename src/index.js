@@ -9,10 +9,18 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import App from "./App";
 import registerServiceWorker from "./registerServiceWorker";
 import rootReducer from "./rootReducer";
+import { userLoggedIn } from "./components/actions/auth";
+
 const store = createStore(
   rootReducer,
   composeWithDevTools(applyMiddleware(thunk))
 );
+
+if (localStorage.dirlibJWT) {
+  const user = { token: localStorage.dirlibJWT };
+  store.dispatch(userLoggedIn(user));
+}
+
 ReactDOM.render(
   <BrowserRouter>
     <Provider store={store}>
@@ -22,4 +30,4 @@ ReactDOM.render(
   document.getElementById("root")
 );
 
-// registerServiceWorker();
+//registerServiceWorker();
