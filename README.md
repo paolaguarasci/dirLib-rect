@@ -19,6 +19,6 @@
 
 # User sing up
 
-- [ ] signup form with client-side validation
-- [ ] server-side validation: add check for email uniqueness
-- [ ] send confirmation email (mailtrap.io for development)
+- [x] signup form with client-side validation
+- [x] server-side validation: add check for email uniqueness
+- [x] send confirmation email (mailtrap.io for development)

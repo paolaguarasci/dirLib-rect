@@ -5,11 +5,12 @@ import "semantic-ui-css/semantic.min.css";
 import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
+import decode from "jwt-decode";
 import { composeWithDevTools } from "redux-devtools-extension";
 import App from "./App";
 import registerServiceWorker from "./registerServiceWorker";
 import rootReducer from "./rootReducer";
-import { userLoggedIn } from "./components/actions/auth";
+import { userLoggedIn } from "./actions/auth";
 
 const store = createStore(
   rootReducer,
@@ -17,7 +18,12 @@ const store = createStore(
 );
 
 if (localStorage.dirlibJWT) {
-  const user = { token: localStorage.dirlibJWT };
+  const payload = decode(localStorage.dirlibJWT);
+  const user = {
+    token: localStorage.dirlibJWT,
+    email: payload.email,
+    confirmed: payload.confirmed
+  };
   store.dispatch(userLoggedIn(user));
 }
 

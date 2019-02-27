@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { logout } from "../actions/auth";
+import { logout } from "../../actions/auth";
 import PropTypes from "prop-types";
 
 const HomePage = ({ isAuthenticated, logout }) => (
@@ -10,7 +10,9 @@ const HomePage = ({ isAuthenticated, logout }) => (
     {isAuthenticated ? (
       <button onClick={() => logout()}>Logout</button>
     ) : (
-      <Link to="/login">Login</Link>
+      <p>
+        <Link to="/login">Login</Link> or <Link to="/signup">Sign Up</Link>
+      </p>
     )}
   </div>
 );
